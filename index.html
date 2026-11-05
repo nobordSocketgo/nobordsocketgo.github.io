@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Socket GO</title>
+<meta name="description" content="Socket GO — a family planner and budget tracker with a knight-cat idle game.">
+<style>
+  :root { --bg: #f7f3ec; --card: #fff; --text: #241e29; --muted: #6b6270; --accent: #c9792e; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #17131c; --card: #221c28; --text: #f3eee8; --muted: #a79fae; --accent: #f2b45c; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font-size: 40px; margin: 0 0 4px; letter-spacing: -.02em; }
+  h2 { font-size: 20px; margin: 32px 0 8px; }
+  .lead { color: var(--muted); font-size: 18px; margin: 0 0 24px; }
+  .card { background: var(--card); border-radius: 16px; padding: 20px 22px; margin: 16px 0; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  a { color: var(--accent); }
+  ul { padding-left: 20px; }
+  footer { margin-top: 40px; color: var(--muted); font-size: 14px; }
+  hr { border: 0; border-top: 1px solid color-mix(in srgb, var(--muted) 30%, transparent); margin: 40px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Socket GO</h1>
+  <p class="lead">A family planner and budget tracker for Android, with a knight-cat idle game that grows when your budget stays on track.</p>
+
+  <div class="card">
+    <h2>What it does</h2>
+    <ul>
+      <li><b>Tasks</b> — daily and weekly plans, shared to-dos, events and people.</li>
+      <li><b>Habits</b> — habits and a wellbeing diary.</li>
+      <li><b>Finance</b> — expenses, income, savings jars, recurring payments and a monthly budget by category.</li>
+      <li><b>Knight cat</b> — a small idle game: steady budgeting earns the cat gold for gear; it never affects your real numbers.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Google account and Google Sheets</h2>
+    <p>Signing in with Google is optional. If you turn on the shared Google Sheet, Socket GO creates one spreadsheet in your own Google Drive
+      (or opens the one you pick) so that family members can share tasks and finances. The app requests only the
+      <code>drive.file</code> permission: it can see only the files it created or that you chose for it, and none of your other files.</p>
+    <p>Details are in the <a href="privacy.html">privacy policy</a>.</p>
+  </div>
+
+  <hr>
+
+  <h1 lang="ru">Socket GO</h1>
+  <p class="lead" lang="ru">Семейный планировщик и учёт бюджета для Android с игрой про кота-рыцаря, который растёт, когда бюджет в ритме.</p>
+  <div class="card" lang="ru">
+    <ul>
+      <li><b>Дела</b> — планы на день и неделю, общие дела, события и люди.</li>
+      <li><b>Привычки</b> — привычки и дневник самочувствия.</li>
+      <li><b>Финансы</b> — траты, доходы, копилки, регулярные платежи и бюджет месяца по категориям.</li>
+      <li><b>Кот-рыцарь</b> — небольшая idle-игра: ровный бюджет приносит коту золото на снаряжение; на ваши настоящие цифры она не влияет.</li>
+    </ul>
+    <p>Вход через Google — по желанию. Общая Google-таблица создаётся на вашем Google Диске; приложение просит только доступ
+      <code>drive.file</code> и видит лишь эту таблицу. Подробнее — в <a href="privacy.html#ru">политике конфиденциальности</a>.</p>
+  </div>
+
+  <footer>Contact: <a href="mailto:nibords@gmail.com">nibords@gmail.com</a> · <a href="privacy.html">Privacy policy</a></footer>
+</main>
+</body>
+</html>
