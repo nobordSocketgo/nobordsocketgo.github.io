@@ -25,7 +25,7 @@
   <p class="muted">Last updated: 5 November 2026</p>
 
   <h2>Summary</h2>
-  <p>Socket GO keeps your data on your device. It has no servers of its own, no advertising and no analytics. If you choose to use the shared Google Sheet,
+  <p>Socket GO keeps your data on your device. It has no servers of its own, no advertising and no analytics; the only outside request is the optional daily exchange-rate download described below. If you choose to use the shared Google Sheet,
     your data is stored in a spreadsheet in <b>your own</b> Google Drive.</p>
 
   <h2>Data stored on your device</h2>
@@ -44,6 +44,11 @@
       <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</li>
     <li>Sharing the spreadsheet with other people is done by you, with Google's own sharing settings.</li>
   </ul>
+
+  <h2>Exchange rates</h2>
+  <p>If you choose to count expenses in other currencies toward your budget, the app downloads daily exchange rates from
+    <a href="https://www.exchangerate-api.com">open.er-api.com</a> (ExchangeRate-API) once a day. The request contains only the code of your main currency
+    (for example, RUB) — no personal data, amounts or account information. The rates are cached on your device.</p>
 
   <h2>Deleting your data</h2>
   <ul>
@@ -71,6 +76,8 @@
       <li>Вход через Google — по желанию, только для общей таблицы. Приложение просит один доступ — <code>drive.file</code>: видит лишь таблицу, которую само создало
         или которую вы выбрали, и не видит остальных файлов на Диске. Привычки и самочувствие в таблицу не попадают.</li>
       <li>Данные Google-аккаунта не собираются, не передаются третьим лицам и не используются для рекламы.</li>
+      <li>Курсы валют: если бюджет списывается из других валют, приложение раз в сутки загружает курсы с open.er-api.com. В запросе — только код основной
+        валюты (например, RUB), без личных данных и сумм; курсы хранятся на устройстве.</li>
       <li>Удалить данные: очистить данные приложения или удалить его; таблицу — удалить на Google Диске; доступ приложения — отозвать на
         <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
       <li>Вопросы: <a href="mailto:nibords@gmail.com">nibords@gmail.com</a>.</li>
