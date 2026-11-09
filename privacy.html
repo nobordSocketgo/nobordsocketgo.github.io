@@ -22,15 +22,22 @@
 <main>
   <p><a href="index.html">← Socket GO</a></p>
   <h1>Privacy policy</h1>
-  <p class="muted">Last updated: 5 November 2026</p>
+  <p class="muted">Last updated: 9 November 2026</p>
 
   <h2>Summary</h2>
-  <p>Socket GO keeps your data on your device. It has no servers of its own, no advertising and no analytics; the only outside request is the optional daily exchange-rate download described below. If you choose to use the shared Google Sheet,
-    your data is stored in a spreadsheet in <b>your own</b> Google Drive.</p>
+  <p>Socket GO keeps your data on your device and has no advertising. Your data leaves the device only if you choose to share it: either in a spreadsheet
+    in <b>your own</b> Google Drive, or in a shared space in the Firebase cloud that only the people you invite can open. Usage statistics are off unless you turn them on,
+    and the only other automatic outside requests are the optional daily exchange-rate download and, if you add a crypto wallet envelope, the balance and price checks described below.</p>
 
   <h2>Data stored on your device</h2>
   <p>Tasks, events, people, habits, the wellbeing diary, finances (expenses, income, savings, budgets) and the game progress are saved in the app's local storage
-    on your device. They are not sent anywhere unless you turn on the shared Google Sheet.</p>
+    on your device. They are not sent anywhere unless you turn on the shared Google Sheet or the Firebase shared space.</p>
+
+  <h2>Home-screen widget (Android, optional)</h2>
+  <p>If you place the Socket GO widget on your home screen, the app gives it a short summary — the nearest task, how many habits are done today,
+    your accounts, envelopes and expense categories — kept in the app's private storage on the device. Expenses you add from the widget wait there
+    until the app takes them in. Nothing is sent anywhere. The widget is visible to anyone who sees your screen, so in Settings → Home screen widget
+    you can hide its parts or turn it off; a turned-off widget receives no data at all.</p>
 
   <h2>Google account and Google Drive</h2>
   <ul>
@@ -45,15 +52,67 @@
     <li>Sharing the spreadsheet with other people is done by you, with Google's own sharing settings.</li>
   </ul>
 
+  <h2>Shared space in the Firebase cloud (optional)</h2>
+  <ul>
+    <li>You can share tasks, finances and habits with family through a shared space: you create it in Settings → Storage and sharing → Firebase cloud,
+      or join one by scanning someone's invitation QR code. Without this, nothing is stored in the cloud.</li>
+    <li>The app signs in to Firebase <b>anonymously</b>: it gets a random ID and does not use your email, phone number or Google account.</li>
+    <li>Stored in Google Cloud Firestore (the Socket GO Firebase project): the data of the parts you share — tasks, events, people, notes and weekly goals;
+      finances (expenses, income, accounts, envelopes, budgets, regular payments, month results); for habits, a view-only card with your habit names
+      and check marks. Also the space itself, the invitation and the members' display names.</li>
+    <li>Never stored in the cloud: the wellbeing diary and <b>personal envelopes</b>. Members only see that an amount went from a shared account
+      “to a personal envelope”, without its name, balance or spending.</li>
+    <li><b>End-to-end encryption.</b> Before shared data leaves the phone, the app encrypts it (AES-256-GCM) with a key that exists only on members' phones:
+      it is created on the owner's phone and passed only inside the invitation QR code and code, never to the cloud. The content of records, members' names
+      and project titles are stored in Firestore as ciphertext, so neither Google nor the app developer (the owner of the Firebase project) can read them.
+      Visible to the cloud, so that syncing works: record identifiers and types, dates inside identifiers (for example, which day a note is for), edit times,
+      member roles and which parts are shared. Shared projects (the Projects tab) are encrypted the same way.</li>
+    <li>Only members who joined with your invitation can read the space; this is enforced by Firebase security rules. Google stores and protects
+      the data as a service provider under the <a href="https://firebase.google.com/terms/data-processing-terms">Firebase data processing terms</a>.</li>
+    <li>When you leave a space, your membership and your habit card are deleted. When the owner deletes the space, all its records, the invitation and
+      the member list are deleted. In both cases the anonymous Firebase account of the device is deleted too.</li>
+  </ul>
+
+  <h2>Usage statistics (optional)</h2>
+  <ul>
+    <li>Statistics are <b>off by default</b>. They are sent only after you turn on “Help improve Socket GO” in Settings → Statistics, and stop as soon as you turn it off.</li>
+    <li>When on, the Android app uses Google Analytics for Firebase to send which screens are opened and for how long, and which actions are taken
+      (for example “an expense was added”, “a habit was checked”, “the game was turned off”), plus short technical error messages.</li>
+    <li>Google Analytics also records standard technical data: a random app-instance ID, device model, Android and app version, language,
+      and an approximate country or region derived from the network address.</li>
+    <li>What is <b>never</b> sent: amounts, category, task, habit or people names, notes, the diary, your Google account, or the advertising ID —
+      collection of the advertising ID is disabled in the app.</li>
+    <li>The data is used only to find what is confusing or broken and to improve the app. It is not sold, not used for advertising
+      and not combined with other data. Google processes it as a service provider under the
+      <a href="https://firebase.google.com/terms/data-processing-terms">Firebase data processing terms</a>; it is kept for up to 14 months.</li>
+    <li>Turning statistics off also resets the app-instance ID on the device, so later use is not linked to earlier data.</li>
+  </ul>
+
   <h2>Exchange rates</h2>
   <p>If you choose to count expenses in other currencies toward your budget, the app downloads daily exchange rates from
     <a href="https://www.exchangerate-api.com">open.er-api.com</a> (ExchangeRate-API) once a day. The request contains only the code of your main currency
     (for example, RUB) — no personal data, amounts or account information. The rates are cached on your device.</p>
 
+  <h2>Crypto wallet envelopes (optional)</h2>
+  <ul>
+    <li>If you add an envelope of the “Crypto wallet” kind, you enter a public <b>receiving address</b>. The app never asks for private keys or seed phrases.</li>
+    <li>To show the balance, the app sends that address only to the public service of its network: mempool.space (Bitcoin),
+      ethereum-rpc.publicnode.com (Ethereum, USDT, USDC on Ethereum), solana-rpc.publicnode.com (Solana), tron-rpc.publicnode.com (TRON, USDT on TRON),
+      bsc-rpc.publicnode.com (BNB Chain, USDT on BNB Chain) or xrplcluster.com (XRP Ledger).
+      This happens when you open the Bank screen, at most once every 10 minutes per wallet, or when you tap “Refresh”.</li>
+    <li>For a Solana wallet the app also finds staked SOL: it reads the wallet’s public transaction history from the same Solana service to find its stake accounts
+      and their balances. Where it stopped reading is kept only on your device.</li>
+    <li>Coin prices come from CoinGecko (api.coingecko.com); that request lists only coin names and the currencies USD, EUR and RUB — no address or personal data.</li>
+    <li>Addresses on public blockchains are public by nature. These services receive the address together with your network address, as with any web request,
+      and handle it under their own policies. The address and the last balance are stored with your other data on your device
+      (and in the shared Google Sheet or shared space, if you use one).</li>
+  </ul>
+
   <h2>Deleting your data</h2>
   <ul>
     <li>Data on the device is removed when you clear the app's data or uninstall it.</li>
     <li>The spreadsheet is a normal file in your Google Drive: you can delete it there at any time.</li>
+    <li>Data in the Firebase shared space is deleted when you leave the space or, for its owner, delete it (Settings → Storage and sharing).</li>
     <li>You can revoke the app's access to your Google account at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
   </ul>
 
@@ -67,18 +126,47 @@
 
   <h1 id="ru" lang="ru">Политика конфиденциальности</h1>
   <div lang="ru">
-    <p class="muted">Обновлено: 5 ноября 2026</p>
-    <p>Socket GO хранит ваши данные на устройстве. У приложения нет своих серверов, рекламы и аналитики. Если вы включаете общую Google-таблицу, данные хранятся
-      в таблице на <b>вашем</b> Google Диске.</p>
+    <p class="muted">Обновлено: 9 ноября 2026</p>
+    <p>Socket GO хранит ваши данные на устройстве, рекламы в нём нет, а статистика выключена, пока вы её не включите. Данные покидают телефон, только если вы
+      сами решите ими поделиться: в таблице на <b>вашем</b> Google Диске или в общем пространстве в облаке Firebase, которое открывают только приглашённые вами люди.</p>
     <ul>
       <li>Дела, события, люди, привычки, дневник самочувствия, финансы и прогресс игры сохраняются в памяти приложения на устройстве и никуда не отправляются,
-        пока вы не включите общую таблицу.</li>
+        пока вы не включите общую таблицу или общее пространство в Firebase.</li>
+      <li>Общее пространство в Firebase — по желанию: создаётся в «Настройки → Хранение и общий доступ → Облако Firebase» или по QR-приглашению.
+        Вход в Firebase <b>анонимный</b> — случайный идентификатор, без почты, телефона и Google-аккаунта. В Google Cloud Firestore хранятся данные тех частей,
+        которыми вы делитесь: дела, события, люди, заметки и цели недели; финансы (траты, доходы, счета, конверты, бюджет, регулярные траты, итоги месяцев);
+        по привычкам — карточка для просмотра с названиями и отметками. А ещё само пространство, приглашение и имена участников.
+        Никогда не попадают в облако дневник самочувствия и <b>личные конверты</b>: участники видят только, что с общего счёта ушла сумма «в личный конверт», —
+        без названия, остатка и трат. Читать пространство могут только вступившие по вашему приглашению (это проверяют правила безопасности Firebase).
+        <b>Сквозное шифрование:</b> прежде чем общие данные покинут телефон, приложение шифрует их (AES-256-GCM) ключом, который есть только на телефонах участников, —
+        он создаётся на телефоне владельца и передаётся только в QR-коде и коде приглашения, в облако не попадает. Содержимое записей, имена участников
+        и названия проектов лежат в Firestore в зашифрованном виде: их не может прочитать ни Google, ни разработчик приложения (владелец проекта Firebase).
+        Облаку видно только нужное для синхронизации: идентификаторы и типы записей, даты в идентификаторах (например, за какой день заметка), время правок,
+        роли участников и какие части открыты. Так же шифруются общие проекты (вкладка «Проекты»).
+        При выходе из пространства удаляются ваше участие и карточка привычек, при удалении пространства владельцем — все его записи, приглашение
+        и участники; анонимный аккаунт телефона в Firebase удаляется в обоих случаях.</li>
+      <li>Виджет на главном экране (Android, по желанию) получает от приложения короткую сводку — ближайшее дело, сколько привычек отмечено, счета, конверты
+        и категории — и хранит её в закрытой памяти приложения на телефоне; никуда она не отправляется. Виджет видит любой, кто смотрит на экран, поэтому
+        в «Настройки → Виджет на главном экране» можно убрать его части или выключить его — выключенный виджет данных не получает.</li>
       <li>Вход через Google — по желанию, только для общей таблицы. Приложение просит один доступ — <code>drive.file</code>: видит лишь таблицу, которую само создало
         или которую вы выбрали, и не видит остальных файлов на Диске. Привычки и самочувствие в таблицу не попадают.</li>
       <li>Данные Google-аккаунта не собираются, не передаются третьим лицам и не используются для рекламы.</li>
+      <li>Статистика — по желанию и <b>выключена по умолчанию</b>: включается в «Настройки → Статистика → Помогать улучшать Socket GO» и сразу
+        перестаёт отправляться после выключения. Через Google Analytics для Firebase приложение сообщает, какие экраны открывают и сколько в них
+        проводят, какие действия делают («внесена трата», «отмечена привычка», «игра выключена») и короткие технические ошибки. Google добавляет
+        стандартные технические данные: случайный идентификатор установки, модель устройства, версии Android и приложения, язык и примерную страну
+        или регион по сетевому адресу. Никогда не отправляются суммы, названия категорий, дел, привычек и людей, заметки, дневник, Google-аккаунт
+        и рекламный ID (его сбор в приложении выключен). Данные нужны только чтобы найти, что непонятно или ломается; они не продаются,
+        не используются для рекламы и хранятся до 14 месяцев. При выключении идентификатор установки на устройстве сбрасывается.</li>
       <li>Курсы валют: если бюджет списывается из других валют, приложение раз в сутки загружает курсы с open.er-api.com. В запросе — только код основной
         валюты (например, RUB), без личных данных и сумм; курсы хранятся на устройстве.</li>
-      <li>Удалить данные: очистить данные приложения или удалить его; таблицу — удалить на Google Диске; доступ приложения — отозвать на
+      <li>Криптоконверты (по желанию): вы вводите только публичный <b>адрес для получения</b> — ключи и фразы приложение не просит. Чтобы показать остаток,
+        адрес уходит только в публичный сервис своей сети: mempool.space (Bitcoin), ethereum-rpc.publicnode.com (Ethereum, USDT и USDC в Ethereum),
+        solana-rpc.publicnode.com (Solana; для SOL в стейкинге — ещё и публичная история кошелька), tron-rpc.publicnode.com (TRON, USDT в TRON),
+        bsc-rpc.publicnode.com (BNB Chain, USDT в BNB Chain) или xrplcluster.com (XRP Ledger) — при открытии «Банка» не чаще раза в 10 минут или по кнопке
+        «Обновить». Цены монет — с CoinGecko, без адреса и личных данных. Адреса в блокчейне публичны по своей природе.</li>
+      <li>Удалить данные: очистить данные приложения или удалить его; таблицу — удалить на Google Диске; общее пространство — выйти из него или удалить
+        (для владельца) в «Настройки → Хранение и общий доступ»; доступ приложения к Google — отозвать на
         <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
       <li>Вопросы: <a href="mailto:nibords@gmail.com">nibords@gmail.com</a>.</li>
     </ul>
